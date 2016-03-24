@@ -1,111 +1,128 @@
 <!DOCTYPE html>
-<html lang="en">
+<html>
 <head>
-    <meta charset="UTF-8">
-    <title>Title</title>
-    <script src="jquery-1.12.1.js"></script>
+<meta charset="utf-8">
+<title>Contact</title>
+<link rel="stylesheet" type="text/css" href="../css/mystyle.css">
+	<script src="https://maps.googleapis.com/maps/api/js?callback=initMap"
+			async defer></script>
 
+	<script src="../jquery%20library/jquery-1.12.1.js"></script>
 
-    <script>
-        $(document).ready(function(){
-            $("#FirstName, #LastName, #Occupation, #Hobbies, #Projects, #VisitedCity").keypress(function(key) {
-                if (!(key.charCode >= 48 && key.charCode < 58)) {
-                } else {
-                    return alert("You cannot include numbers in this field!!!")
-                }
-            });
-        });
-        //$('#SubmitForm').click(function()
-        //{
-        //   $('#SubmitForm').val("input");
-        //    console.log('hey');
-        //});
+	<script>
+		$(document).ready(function(){
+			$("#FirstName, #LastName, #Occupation, #Hobbies, #Projects, #VisitedCity").keypress(function(key) {
+				if (!(key.charCode >= 48 && key.charCode < 58)) {
+				} else {
+					return alert("You cannot include numbers in this field!!!")
+				}
+			});
+		});
 
+		function userDidSubmit() {
 
+			//grab all the form data
+			var queryString = $('#superform').serialize();
+			//then we split it by & sign and replace it with newlines
+			queryString = queryString.replace(/&/g, "\n")
+			//append it to our textbox
+			document.getElementById("SubmitForm").value += queryString
 
+		}
+	</script>
 
-
-    </script>
+	<script>
+		function initMap() {
+			var mapDiv = document.getElementById('map');
+			var map = new google.maps.Map(mapDiv, {
+				center: {lat: 47.245164, lng: -122.438066},
+				zoom: 8
+			});
+		};
+	</script>
 
 </head>
+
 <body>
+<div id="navigation">
+	<ul>
+		<li><a href="index.html">PersonalInfo</a></li>
+	</ul>
+</div>
+<h1>Contact</h1>
+
+<div id = "sidebar">
+<p>If you have any question regarding a recipe, please contact us at:</p>
+<p> <b><u> <img src="../img/email-icon.jpg" alt="email" width="25" height="25">Email</u>:</b> th3smsyt@uw.edu </p>
+<p> <b><u> <img src="../img/New_Mobile_CellPhone_Infos.jpg" alt="cellphone" width="20" height="30">Phone Number</u>:</b> 425-345-5548 </p>
+<p> Feel free to call, text or leave a voicemail!!! </p>
+</div>
+
 <!-- Contact Section -->
 <section id="contact">
 
-    <h2>Contact Us</h2>
-    <form id="superform">
+	<h3>Send me your contact information</h3>
+	<form id="superform">
 
-        <label for='FirstName'>First Name:</label>
-        <input type="text" id="FirstName" name="FirstName" required/>
-        <br>
+		<label for='FirstName'>First Name:</label>
+		<input type="text" id="FirstName" name="FirstName" required/>
+		<br>
 
-        <label for='LastName'>Last Name:</label>
-        <input type="text" id="LastName" name="LastName" required/>
-        <br>
+		<label for='LastName'>Last Name:</label>
+		<input type="text" id="LastName" name="LastName" required/>
+		<br>
 
-        <label for='EMail'>EMail:</label>
-        <input type="email" id="EMail" name="EMail" required/>
-        <br>
+		<label for='EMail'>EMail:</label>
+		<input type="email" id="EMail" name="EMail" required/>
+		<br>
 
-        <label for='Occupation'>Occupation:</label>
-        <input type="text" id="Occupation" name="Occupation" required/>
-        <br>
+		<label for='Occupation'>Occupation:</label>
+		<input type="text" id="Occupation" name="Occupation" required/>
+		<br>
 
-        <label for='Address'>Address:</label>
-        <textarea cols="20" rows="5" id="Address" name="Address" required></textarea>
-        <br>
+		<label for='Address'>Address:</label>
+		<textarea cols="20" rows="5" id="Address" name="Address" required></textarea>
+		<br>
 
-        <label for='VisitedCity'>Visited City:</label>
-        <input type="text" id="VisitedCity" name="VisitedCity" required/>
-        <br>
+		<label for='VisitedCity'>Visited City:</label>
+		<input type="text" id="VisitedCity" name="VisitedCity" required/>
+		<br>
 
-        <label for='CSLanguages'>CS languages that you learnt:</label>
-        <textarea cols="20" rows="5" id="CSLanguages" name="CSLanguages" required></textarea>
-        <br>
+		<label for='CSLanguages'>CS languages that you learnt:</label>
+		<textarea cols="20" rows="5" id="CSLanguages" name="CSLanguages" required></textarea>
+		<br>
 
-        <label for='School'>School:</label>
-        <input type="text" id="School" name="School" required/>
-        <br>
+		<label for='School'>School:</label>
+		<input type="text" id="School" name="School" required/>
+		<br>
 
-        <label for='Hobbies'>Hobbies:</label>
-        <textarea cols="20" rows="5" id="Hobbies" name="Hobbies" required></textarea>
-        <br>
+		<label for='Hobbies'>Hobbies:</label>
+		<textarea cols="20" rows="5" id="Hobbies" name="Hobbies" required></textarea>
+		<br>
 
-        <label for='Projects'>Projects that you have done:</label>
-        <textarea cols="20" rows="5" id="Projects" name="Projects" required></textarea>
-        <br>
+		<label for='Projects'>Projects that you have done:</label>
+		<textarea cols="20" rows="5" id="Projects" name="Projects" required></textarea>
+		<br>
 
+	</form>
+	<input type="submit" id="testsub" name="testsub" value="Test Submission" onclick="userDidSubmit()">
 
+	<div class="container">
+		<h3>Submitted Information</h3>
+		<textarea cols="40" rows="20" id="SubmitForm" name="Submit" ></textarea>
+		<br>
+	</div>
 
-
-
-    </form>
-    <input type="submit" id="testsub" name="testsub" value="Test Submission" onclick="userDidSubmit()">
-
-    <div class="container">
-        <h2>Submitted Information</h2>
-        <textarea cols="20" rows="20" id="SubmitForm" name="Submit" ></textarea>
-        <br>
-    </div>
-
-
-
-
+	<div id="map"></div>
 </section>
 
-<script>
+<aside>
+  	<em>This information may change in the future.</em>
+</aside>
 
-    function userDidSubmit() {
-
-        //grab all the form data
-        var queryString = $('#superform').serialize();
-        //then we split it by & sign and replace it with newlines
-        queryString = queryString.replace(/&/g, "\n")
-        //append it to our textbox
-        document.getElementById("SubmitForm").value += queryString
-
-    }
-
-</script>
+<footer>
+  	Posted by: Phuoc Nguyen
+  	Winter 2016
+</footer>
 </body>
 </html>
